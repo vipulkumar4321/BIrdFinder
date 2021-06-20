@@ -1,11 +1,14 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { BIRDS } from "./data";
 
 class InputImage extends React.Component {
   state = {
     selectedFile: null,
     image: null,
+    birdName: null,
+    wikiLink: null,
   };
 
   fileSelectedHandler = (event) => {
@@ -13,6 +16,7 @@ class InputImage extends React.Component {
       this.setState({
         selectedFile: event.target.files[0],
         image: URL.createObjectURL(event.target.files[0]),
+        birdName: null,
       });
     }
   };
@@ -24,10 +28,9 @@ class InputImage extends React.Component {
     }
 
     const fd = new FormData();
-    fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
+    fd.append("file", this.state.selectedFile, this.state.selectedFile.name);
     axios
-      .post("link", fd, {
-        //Provide the link of the uploading site like firebase, etc. https://www.youtube.com/watch?v=qZ1EFnFOGvE
+      .post("http://127.0.0.1:5000/predict", fd, {
         onUploadProgress: (ProgressEvent) => {
           console.log(
             "Upload Progress: " +
@@ -37,49 +40,105 @@ class InputImage extends React.Component {
         },
       })
       .then((res) => {
-        console.log(res);
+        let birdNameFromFlask = res.data;
+        console.log(birdNameFromFlask);
+
+        let birdWikiLink = BIRDS.filter((e) => e.bird === birdNameFromFlask);
+        birdWikiLink = birdWikiLink[0].link;
+
+        this.setState({
+          birdName: birdNameFromFlask,
+          wikiLink: birdWikiLink,
+        });
       });
   };
 
   render() {
     return (
       <div>
-        <input
-          style={{ display: "none" }}
-          type="file"
-          onChange={this.fileSelectedHandler}
-          ref={(fileInput) => (this.fileInput = fileInput)}
-        />
+        <div>
+          <input
+            style={{ display: "none" }}
+            type="file"
+            onChange={this.fileSelectedHandler}
+            ref={(fileInput) => (this.fileInput = fileInput)}
+          />
 
-        <div className="d-grid gap-2 col-4 mx-auto container">
-          <button
-            className="btn btn-primary onClick={this.fileUploadHandler}"
-            type="button"
-            onClick={() => this.fileInput.click()}
+          <div className="d-grid gap-2 col-4 mx-auto container mb-5 d-flex justify-content-center">
+            <button
+              className="btn btn-primary onClick={this.fileUploadHandler}"
+              type="button"
+              onClick={() => this.fileInput.click()}
+            >
+              Capture/Upload Bird Image
+            </button>
+          </div>
+
+          <div
+            style={{
+              display: this.state.selectedFile === null ? "none" : "",
+            }}
           >
-            Capture/Upload Bird Image
-          </button>
+            <img
+              src={this.state.image}
+              className="rounded mx-auto d-block container shadow-lg p-3 mt-5 mb-5 bg-white"
+              style={{
+                maxWidth: "620px",
+                maxHeight: "500px",
+                objectFit: "contain",
+              }}
+              alt=""
+            ></img>
+
+            <div className="d-grid gap-2 col-4 mt-5 mx-auto container d-flex justify-content-center">
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={this.fileUploadHandler}
+              >
+                Search This Bird
+              </button>
+            </div>
+          </div>
         </div>
 
-        <img
-          src={this.state.image}
-          className="rounded mx-auto d-block container shadow-lg p-3 mt-5 mb-5 bg-white"
+        <div
           style={{
-            maxWidth: "620px",
-            maxHeight: "500px",
-            objectFit: "contain",
+            display: this.state.birdName === null ? "none" : "",
           }}
-          alt=""
-        ></img>
+        >
+          <div className="rounded mx-auto d-block container shadow-lg p-3 mt-5 mb-5 bg-white">
+            <h1 className="d-flex justify-content-center">
+              {this.state.birdName}
+            </h1>
+          </div>
+        </div>
 
-        <div className="d-grid gap-2 col-4 mx-auto container">
-          <button
-            className="btn btn-primary"
-            type="button"
-            onClick={this.fileUploadHandler}
-          >
-            Search This Bird
-          </button>
+        <div
+          className="container"
+          style={{
+            display: this.state.birdName === null ? "none" : "",
+            position: "relative",
+            overflow: "hidden",
+            width: "100%",
+            paddingTop: "56.25%",
+          }}
+        >
+          <iframe
+            allow="fullscreen"
+            title="More Information about the bird."
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              top: "0",
+              left: "0",
+              bottom: "0",
+              right: "0",
+            }}
+            className="responsive-iframe"
+            src={this.state.wikiLink}
+          ></iframe>
         </div>
       </div>
     );
