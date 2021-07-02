@@ -10,7 +10,7 @@ https://nodejs.org/en/
 
 In the project directory, run:
 
-### `npm init`
+### `npm install`
 
 This will install the required modules, then run:
 
