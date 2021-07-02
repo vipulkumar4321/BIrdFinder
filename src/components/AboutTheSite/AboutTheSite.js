@@ -1,11 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./AboutTheSite.css"
 
 class AboutTheSite extends React.Component {
   render() {
     return (
-      <div className="p-5 mb-4 mt-5 text-white bg-dark rounded-3">
-        <div className="container-fluid py-5 ">
+      <div className="p-5 text-light back-img">
+        <div className="container-fluid py-5 bolder ">
           <h1 className="display-5 fw-bold d-flex justify-content-around">
             What We Do!!!
           </h1>

@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { BIRDS } from "./data";
-
+import "./InputImage.css";
 class InputImage extends React.Component {
   state = {
     selectedFile: null,
@@ -29,7 +29,7 @@ class InputImage extends React.Component {
 
     const fd = new FormData();
     fd.append("file", this.state.selectedFile, this.state.selectedFile.name);
-    axios
+    axios 
       .post("http://127.0.0.1:5000/predict", fd, {
         onUploadProgress: (ProgressEvent) => {
           console.log(
@@ -55,7 +55,7 @@ class InputImage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main-content">
         <div>
           <input
             style={{ display: "none" }}
@@ -64,9 +64,9 @@ class InputImage extends React.Component {
             ref={(fileInput) => (this.fileInput = fileInput)}
           />
 
-          <div className="d-grid gap-2 col-4 mx-auto container mb-5 d-flex justify-content-center">
+          <div className="d-grid gap-2 col-4 mx-auto container d-flex justify-content-center pad-input">
             <button
-              className="btn btn-primary onClick={this.fileUploadHandler}"
+              className="btn btn-outline-dark btn-large onClick={this.fileUploadHandler}"
               type="button"
               onClick={() => this.fileInput.click()}
             >
