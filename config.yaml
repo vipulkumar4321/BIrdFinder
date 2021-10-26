@@ -9,7 +9,7 @@ metadata:
     google.com/service-discovery: artistweb
     circleci.com/project-slug: github/example-org/artist-website
   tags:
-    - Node
+    - java
   links:
     - url: http://13.126.59.135/
       title: Admin Dashboard
