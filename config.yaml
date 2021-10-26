@@ -4,9 +4,9 @@ metadata:
   name: Bird-finder
   description: Search any bird around the world just with a click of picture and power of AI.
   labels:
-    13.126.59.135/custom: custom_label_value
+    google.com/custom: custom_label_value
   annotations:
-    13.126.59.135/service-discovery: artistweb
+    google.com/service-discovery: artistweb
     circleci.com/project-slug: github/example-org/artist-website
   tags:
     - Node
