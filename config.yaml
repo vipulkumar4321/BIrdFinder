@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: Bird-finder
-  description: Search any bird around the world just with a click of picture and power of AI.
+  description: Search any bird around the world just with a click of picture and power of AI
   labels:
     google.com/custom: custom_label_value
   annotations:
