@@ -9,7 +9,12 @@ metadata:
     google.com/service-discovery: artistweb
     circleci.com/project-slug: github/example-org/artist-website
   tags:
-    - java
+    - python
+    - AWS EC-2
+    - node
+    - React
+    - Deep Learning
+    - AI
   links:
     - url: https://admin.example-org.com
       title: Admin Dashboard
