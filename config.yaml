@@ -11,11 +11,11 @@ metadata:
   tags:
     - java
   links:
-    - url: http://13.126.59.135/
+    - url: https://admin.example-org.com
       title: Admin Dashboard
       icon: dashboard
 spec:
   type: website
   lifecycle: production
-  owner: vipul kumar
+  owner: Vipul Kumar
   system: public-websites
