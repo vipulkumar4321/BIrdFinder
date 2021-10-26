@@ -9,7 +9,8 @@ metadata:
     google.com/service-discovery: artistweb
     circleci.com/project-slug: github/example-org/artist-website
   tags:
-    - python-java
+    - java
+    - data
   links:
     - url: https://admin.example-org.com
       title: Admin Dashboard
