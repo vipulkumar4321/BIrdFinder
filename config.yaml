@@ -10,7 +10,7 @@ metadata:
     circleci.com/project-slug: github/example-org/artist-website
   tags:
     - python
-    - AWS EC-2
+    - AWS EC2
     - node
     - React
     - Deep Learning
