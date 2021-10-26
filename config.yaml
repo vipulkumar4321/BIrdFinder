@@ -10,11 +10,6 @@ metadata:
     circleci.com/project-slug: github/example-org/artist-website
   tags:
     - python
-    - EC2
-    - node
-    - React
-    - ML
-    - AI
   links:
     - url: https://admin.example-org.com
       title: Admin Dashboard
