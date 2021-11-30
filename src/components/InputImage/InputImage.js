@@ -30,7 +30,7 @@ class InputImage extends React.Component {
     const fd = new FormData();
     fd.append("file", this.state.selectedFile, this.state.selectedFile.name);
     axios 
-      .post("https://15.207.247.37/predict", {mode:'cors'}, fd, {
+      .post("https://15.207.247.37/predict", fd, {
         onUploadProgress: (ProgressEvent) => {
           console.log(
             "Upload Progress: " +
