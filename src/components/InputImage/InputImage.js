@@ -30,7 +30,7 @@ class InputImage extends React.Component {
     const fd = new FormData();
     fd.append("file", this.state.selectedFile, this.state.selectedFile.name);
     axios 
-      .post("http://127.0.0.1:5000/predict", fd, {
+      .post("http://15.207.247.37/predict", fd, {
         onUploadProgress: (ProgressEvent) => {
           console.log(
             "Upload Progress: " +
